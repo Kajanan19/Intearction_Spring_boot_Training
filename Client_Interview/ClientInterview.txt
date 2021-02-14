@@ -1,0 +1,184 @@
+1.overloading and overriding
+
+2.Why Spring and features
+  why-:  makes java programming quicker, easier, safer.
+         focus on speed, simplicity and productivity.
+
+  features-: is everywhere, flexible, productive, fast, secure, supportive
+  refer-: https://spring.io/why-spring
+
+3.Dependecy Injection Or Inversion of Control
+
+  IOC_: Inversion of Control is a principle in software engineering by which the control of objects or portions of a program is transferred to a container or framework. It's most often used in the context of object-oriented programming.
+
+  DI_: Dependency injection is a pattern through which to implement IoC, where the control being inverted is the setting of object's dependencies.
+
+  refer-: https://www.baeldung.com/inversion-control-and-dependency-injection-in-spring  
+
+4.How does internet works
+
+5.https://stackoverflow.com/questions/42456116/understanding-tcp-ip-layering-through-internet-flow
+
+6.Singleton DP-: In software engineering, the singleton pattern is a design pattern that restricts
+the instantiation of a class to one object. This is useful when exactly one object is
+needed to coordinate actions across the system.
+
+Simple example_
+		
+public class DBManager {
+	
+	private static volatile DBManager dbManager;
+	
+	private DBManager() {
+		if(dbManager != null) {
+			throw new RuntimeException("Plaese use getDBManager method");
+		}
+	}
+	
+	public static DBManager getDbManager() {
+		if(dbManager == null) {
+			synchronized (DBManager.class) {
+				if(dbManager == null) {
+				dbManager= new DBManager();
+				}
+			}
+		}
+		return dbManager;
+	}
+
+}
+
+7.How to fetch states of US(doubt)
+
+8. Static Keyword_
+
+When we create object from particular class its create copy of it. But there are certain attributes which are common
+across all the objects.
+• For that type of attribute we can declare as static.
+• That does not mean you cant change the value… you can. But value is common across all created objects
+• We can access this value using class name even though no object created from the particular class
+• We can also have static methods.
+• Static method can only access static variables
+• Being static does not change access levels
+• In class diagrams we can mention static by underline
+
+9.Abstract Class_: Abstract classes cannot be instantiated and are designed to be subclassed. They are used to provide some common functionality across a set of related classes while also allowing default method implementations.
+
+
+
+10.DTO and dao
+ 1.Data Transfer Object
+DTO is an object that carries data between processes. When you're working with a remote interface, each call it is expensive. As a result you need to reduce the number of calls. The solution is to create a Data Transfer Object that can hold all the data for the call. It needs to be serializable to go across the connection. Usually an assembler is used on the server side to transfer data between the DTO and any domain objects. It's often little more than a bunch of fields and the getters and setters for them.
+
+
+ 2.Data Access Object
+A Data Access Object abstracts and encapsulates all access to the data source. The DAO manages the connection with the data source to obtain and store data.
+
+The DAO implements the access mechanism required to work with the data source. The data source could be a persistent store like an RDBMS, or a business service accessed via REST or SOAP.
+
+The DAO abstracts the underlying data access implementation for the Service objects to enable transparent access to the data source. The Service also delegates data load and store operations to the DAO.
+
+
+3.Service
+Service objects are doing the work that the application needs to do for the domain you're working with. It involves calculations based on inputs and stored data, validation of any data that comes in from the presentation, and figuring out exactly what data source logic to dispatch, depending on commands received from the presentation.
+
+A Service Layer defines an application's boundary and its set of available operations from the perspective of interfacing client layers. It encapsulates the application's business logic, controlling transactions and coordinating responses in the implementation of its operations.
+
+
+
+11.PUT Vs PATCH
+
+Difference between PUT, POST, GET, DELETE and PATCH IN HTTP Verbs:
+
+The most commonly used HTTP verbs POST, GET, PUT, DELETE are similar to CRUD (Create, Read, Update and Delete) operations in database. We specify these HTTP verbs in the capital case. So, the below is the comparison between them.
+
+create - POST
+read - GET
+update - PUT
+delete - DELETE
+PATCH: Submits a partial modification to a resource. If you only need to update one field for the resource, you may want to use the PATCH method.
+
+Note:
+Since POST, PUT, DELETE modifies the content, the tests with Fiddler for the below url just mimicks the updations. It doesn't delete or modify actually. We can just see the status codes to check whether insertions, updations, deletions occur.
+
+URL: http://jsonplaceholder.typicode.com/posts/
+
+1) GET:
+
+GET is the simplest type of HTTP request method; the one that browsers use each time you click a link or type a URL into the address bar. It instructs the server to transmit the data identified by the URL to the client. Data should never be modified on the server side as a result of a GET request. In this sense, a GET request is read-only.
+
+Checking with Fiddler or PostMan: We can use Fiddler for checking the response. Open Fiddler and select the Compose tab. Specify the verb and url as shown below and click Execute to check the response.
+
+Verb: GET
+
+url: http://jsonplaceholder.typicode.com/posts/
+
+Response: You will get the response as:
+
+"userId": 1, "id": 1, "title": "sunt aut...", "body": "quia et suscipit..."
+
+In the “happy” (or non-error) path, GET returns a representation in XML or JSON and an HTTP response code of 200 (OK). In an error case, it most often returns a 404 (NOT FOUND) or 400 (BAD REQUEST).
+
+2) POST:
+
+The POST verb is mostly utilized to create new resources. In particular, it's used to create subordinate resources. That is, subordinate to some other (e.g. parent) resource.
+
+On successful creation, return HTTP status 201, returning a Location header with a link to the newly-created resource with the 201 HTTP status.
+
+Checking with Fiddler or PostMan: We can use Fiddler for checking the response. Open Fiddler and select the Compose tab. Specify the verb and url as shown below and click Execute to check the response.
+
+Verb: POST
+
+url: http://jsonplaceholder.typicode.com/posts/
+
+Request Body:
+
+data: { title: 'foo', body: 'bar', userId: 1000, Id : 1000 }
+
+Response: You would receive the response code as 201.
+
+If we want to check the inserted record with Id = 1000 change the verb to Get and use the same url and click Execute.
+
+As said earlier, the above url only allows reads (GET), we cannot read the updated data in real.
+
+3) PUT:
+
+PUT is most-often utilized for update capabilities, PUT-ing to a known resource URI with the request body containing the newly-updated representation of the original resource.
+
+Checking with Fiddler or PostMan: We can use Fiddler for checking the response. Open Fiddler and select the Compose tab. Specify the verb and url as shown below and click Execute to check the response.
+
+Verb: PUT
+
+url: http://jsonplaceholder.typicode.com/posts/1
+
+Request Body:
+
+data: { title: 'foo', body: 'bar', userId: 1, Id : 1 }
+
+Response: On successful update it returns 200 (or 204 if not returning any content in the body) from a PUT.
+
+4) DELETE:
+
+DELETE is pretty easy to understand. It is used to delete a resource identified by a URI.
+
+On successful deletion, return HTTP status 200 (OK) along with a response body, perhaps the representation of the deleted item (often demands too much bandwidth), or a wrapped response (see Return Values below). Either that or return HTTP status 204 (NO CONTENT) with no response body. In other words, a 204 status with no body, or the JSEND-style response and HTTP status 200 are the recommended responses.
+
+Checking with Fiddler or PostMan: We can use Fiddler for checking the response. Open Fiddler and select the Compose tab. Specify the verb and url as shown below and click Execute to check the response.
+
+Verb: DELETE
+
+url: http://jsonplaceholder.typicode.com/posts/1
+
+Response: On successful deletion it returns HTTP status 200 (OK) along with a response body.
+
+Example between PUT and PATCH
+
+PUT
+
+If I had to change my firstname then send PUT request for Update:
+
+{ "first": "Nazmul", "last": "hasan" } So, here in order to update the first name we need to send all the parameters of the data again.
+
+PATCH:
+
+Patch request says that we would only send the data that we need to modify without modifying or effecting other parts of the data. Ex: if we need to update only the first name, we pass only the first name.
