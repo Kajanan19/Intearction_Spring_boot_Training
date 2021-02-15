@@ -1,0 +1,50 @@
+1.DTO and DAO
+
+First off, these concepts are Platform Agnostic and are not exclusive to Spring Framework or any other framework, for that matter.
+
+1.1Data Transfer Object----->DTO
+
+DTO is an object that carries data between processes.
+ When you're working with a remote interface, each call it is expensive. 
+ As a result you need to reduce the number of calls. 
+ The solution is to create a Data Transfer Object that can hold all the data for the call. 
+ It needs to be serializable to go across the connection. 
+ Usually an assembler is used on the server side to transfer data between the DTO and any domain objects. 
+ It's often little more than a bunch of fields and the getters and setters for them.
+
+1.2.Data Access Object
+
+A Data Access Object abstracts and encapsulates all access to the data source. 
+The DAO manages the connection with the data source to obtain and store data.
+The DAO implements the access mechanism required to work with the data source. 
+The data source could be a persistent store like an RDBMS, or a business service accessed via REST or SOAP.
+The DAO abstracts the underlying data access implementation for the Service objects to enable transparent access to the data source. 
+The Service also delegates data load and store operations to the DAO.
+
+Service
+Service objects are doing the work that the application needs to do for the domain you're working with. 
+It involves calculations based on inputs and stored data, validation of any data that comes in from the presentation, and figuring out exactly what data source logic to dispatch, depending on commands received from the presentation.
+A Service Layer defines an application's boundary and its set of available operations from the perspective of interfacing client layers. 
+It encapsulates the application's business logic, controlling transactions and coordinating responses in the implementation of its operations.
+
+Recommended References
+Martin Fowler has a great book on common Application Architecture Patterns named Patterns of Enterprise Application Architecture. 
+There is also, Core J2EE Patterns that worth looking at.
+
+
+
+2.Response Entity
+
+ResponseEntity is meant to represent the entire HTTP response. 
+You can control anything that goes into it: status code, headers, and body.
+
+@ResponseBody 
+
+is a marker for the HTTP response body and @ResponseStatus declares the status code of the HTTP response.
+
+@ResponseStatus 
+
+isn't very flexible. 
+It marks the entire method so you have to be sure that your handler method will always behave the same way. 
+And you still can't set the headers. You'd need the HttpServletResponse or a HttpHeaders parameter.
+Basically, ResponseEntity lets you do more.
