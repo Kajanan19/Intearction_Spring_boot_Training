@@ -14,18 +14,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.company.dto.UserDTO;
+import com.company.exception.ServiceException;
 import com.company.models.User;
 import com.company.service.UserService;
 
 @RestController
+@RequestMapping("/api/v1.0.0/")
 public class UserController {
 	
 	@Autowired
 	UserService userService;
 	
 	
-	@RequestMapping(value = "/user", method = RequestMethod.GET)
-	public ResponseEntity<List<User>> viewAllUsers(){
+	@RequestMapping(value = "/users", method = RequestMethod.GET)
+	public ResponseEntity<List<User>> viewAllUsers() throws ServiceException{
 		
 		List<User> user=new ArrayList<>();
 		user = userService.viewAllUsers();
@@ -34,7 +36,7 @@ public class UserController {
 		return ResponseEntity.status(HttpStatus.FOUND).headers(httpHeaders).body(user);
 	}
 	
-	@RequestMapping(value = "user/{id}", method=RequestMethod.GET)
+	@RequestMapping(value = "users/{id}", method=RequestMethod.GET)
 	public ResponseEntity<User> viewUserbyId(@PathVariable int id) {
 		
 		User user=new User();

@@ -1,9 +1,11 @@
 package com.company.serviceimpl;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.company.exception.ServiceException;
 import com.company.models.Task;
 import com.company.repository.TaskRepository;
 import com.company.service.TaskService;
@@ -21,8 +23,14 @@ public class TaskServiceImplementation implements TaskService {
 	}
 	
 	@Override
-	public List<Task> getAllTasks() {
-		return taskRepository.findAll();
+	public List<Task> getAllTasks() throws ServiceException {
+		List<Task> taskList=new ArrayList<>();
+		try {
+			taskList=taskRepository.findAll();
+		} catch (Exception e) {
+			throw new ServiceException("task not found");
+		}
+		return taskList;
 	}
 
 	@Override
