@@ -1,8 +1,18 @@
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    name: postgres
+    name: fianl_db
     password: 1234
     platform: postgresql
     url: jdbc:postgresql://localhost:5432/postgres
     username: postgres
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+
+
