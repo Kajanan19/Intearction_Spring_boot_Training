@@ -1,0 +1,87 @@
+JVM
+==============================================
+
+Virtual machines 
+System based virtual machines 
+application based virtual machines (create platform to run other programs)
+
+JVM is the specification
+JRE is the implementation
+
+java is platform independent but jre is platform dependent.
+
+7 java programs - 7 jvm instances 
+
+jvm dies - there is no non deamon threads 
+			system.exit()
+			
+compile code - javac Hello.java
+run - java Hello (this is the place where jvm is creates)
+			
+if we want to change the thread deamon or non deamon we should do it before thread start 
+Thread t = new Thread();
+t.setDeamon(true);
+t.start();
+=============================================================
+JVM Process 
+
+LOAD         STORE      Excecute
+===========================================
+
+LOAD
+
+Loading        Linking      Initialization 
+============================================
+
+Loading (main responsibility is to load class to memory area)     
+
+reads full class name 
+read variable info 
+reads immediate parent info
+check this is a class, interface or enum 
+loads to memory (method area)
+
+---------------------------------------------
+
+Linking 
+
+Verification        preperation       resolution
+==================================================
+
+verification 
+
+java has byte code verifier check it is safe to execute.
+this happens when we try to load the class
+check this comes from valid compiler (structure , formatting)
+if verification fails it throw runtime exception verifyexception.
+
+preperation 
+put default values to static varible 
+
+resolution 
+maps the objects in other classes every where it use.
+
+====================================================
+
+Initialization 
+put initial values to all default values 
+
+================================================
+
+Store
+
+Method area (class info)				per vm
+Heap area  (all objects, statics)		per vm 
+Stack(executing method info)					per thread 
+PC Registers(info about next execution)			per thread
+Native method area 
+
+=========================================================
+
+All these have to be done before active use case 
+new keyword is active use case 
+invoke static methods 
+asign value for static fields 
+if class is main 
+reflection api to create objects (getInstance() through api)
+when inisializing a sub class (when inisialize object it automatically initialize parent)
