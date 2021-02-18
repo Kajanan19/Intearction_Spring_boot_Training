@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.company.converter.TaskdtoConverter;
 import com.company.dto.TaskDTO;
 import com.company.exception.ServiceException;
 import com.company.models.Task;
@@ -32,20 +34,16 @@ public class TaskController {
 	@PostMapping("/task/{userId}")
 	public ResponseEntity<Task> createTask(@PathVariable int userId, @RequestBody TaskDTO taskDTO) {
 		User user = userService.viewUserbyId(userId);
-		
+		taskDTO.setUser(user);
 		Task task = new Task();
+		TaskdtoConverter taskdtoConverter=new TaskdtoConverter();
 		
-		task.setProgress(taskDTO.getProgress());
-		task.setTaskName(taskDTO.getTaskName());
-		task.setActive(taskDTO.isActive());
-		task.setUser(user);
-		
-		Task taskReceived= new Task();
 		HttpHeaders httpHeaders=new HttpHeaders();
-		taskReceived=taskService.create(task);
-        httpHeaders.add("Desc", "Add User");
 		
-		return ResponseEntity.status(HttpStatus.CREATED).headers(httpHeaders).body(taskReceived); 
+		task=taskService.create(taskdtoConverter.dtoToModel(taskDTO));
+		httpHeaders.add("Desc", "Craete Task");
+		
+		return ResponseEntity.status(HttpStatus.CREATED).headers(httpHeaders).body(task); 
 		
 	}
 	

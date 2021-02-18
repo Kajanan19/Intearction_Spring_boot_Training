@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.company.converter.UserdtoConverter;
 import com.company.dto.UserDTO;
 import com.company.exception.ServiceException;
 import com.company.models.User;
@@ -49,15 +50,11 @@ public class UserController {
 	@RequestMapping(value = "/user", method = RequestMethod.POST)
 	public ResponseEntity<User> addUser(@RequestBody UserDTO userDTO) {
 		
-		User userReceived= new User();
-		userReceived.setFirstName(userDTO.getFirstName());
-		userReceived.setUsername(userDTO.getUsername());
-		userReceived.setPassword(userDTO.getPassword());
-		userReceived.setUserId(userDTO.getUserId());
-		
+		UserdtoConverter userdtoConverter=new UserdtoConverter();
 		User user= new User();
+		
 		HttpHeaders httpHeaders=new HttpHeaders();
-		user=userService.addUser(userReceived);
+		user=userService.addUser(userdtoConverter.dtoToModel(userDTO));
 		httpHeaders.add("Desc", "view User by Id");
 		
 		return ResponseEntity.status(HttpStatus.CREATED).headers(httpHeaders).body(user); 
@@ -66,17 +63,13 @@ public class UserController {
 	@RequestMapping(value = "/user/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<User> updateUserById(@PathVariable int id, @RequestBody UserDTO userDTO) {
 		
-		User userReceived= new User();
-		
-		userReceived.setFirstName(userDTO.getFirstName());
-		userReceived.setUsername(userDTO.getUsername());
-		userReceived.setPassword(userDTO.getPassword());
-		userReceived.setUserId(userDTO.getUserId());
-		
-		User user=new User();
+		UserdtoConverter userdtoConverter=new UserdtoConverter();
+		User user= new User();
+	
 		HttpHeaders httpHeaders=new HttpHeaders();
-		user=userService.addUser(userReceived);
+		user=userService.updateUserById(id,userdtoConverter.dtoToModel(userDTO));
 		httpHeaders.add("Desc", "update User By Id");
+		
 		return ResponseEntity.status(HttpStatus.OK).headers(httpHeaders).body(user);
 		
 		

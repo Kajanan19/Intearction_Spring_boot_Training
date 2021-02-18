@@ -1,0 +1,117 @@
+
+*********************************PostgreSQL****************************************************
+*********************************SELECT********************************************************
+
+PostgreSQL: SELECT Statement
+This PostgreSQL tutorial explains how to use the PostgreSQL SELECT statement with syntax and examples.
+
+Description
+The PostgreSQL SELECT statement is used to retrieve records from one or more tables in PostgreSQL.
+
+Syntax
+In its simplest form, the syntax for the SELECT statement in PostgreSQL is:
+
+SELECT expressions
+FROM tables
+[WHERE conditions];
+However, the full syntax for the PostgreSQL SELECT statement is:
+
+SELECT [ ALL | DISTINCT | DISTINCT ON (distinct_expressions) ]
+expressions
+FROM tables
+[WHERE conditions]
+[GROUP BY expressions]
+[HAVING condition]
+[ORDER BY expression [ ASC | DESC | USING operator ] [ NULLS FIRST | NULLS LAST ]]
+[LIMIT [ number_rows | ALL]
+[OFFSET offset_value [ ROW | ROWS ]]
+[FETCH { FIRST | NEXT } [ fetch_rows ] { ROW | ROWS } ONLY]
+[FOR { UPDATE | SHARE } OF table [ NOWAIT ]];
+
+************************************************************************************************************
+
+Parameters or Arguments
+
+ALL
+Optional. Returns all matching rows.
+
+DISTINCT
+Optional. Removes duplicates from the result set. Learn more about DISTINCT clause
+
+DISTINCT ON
+Optional. Removes duplicates based on the distinct_expressions. Learn more about the DISTINCT ON clause.
+
+expressions
+The columns or calculations that you wish to retrieve. Use * if you wish to select all columns.
+
+tables
+The tables that you wish to retrieve records from. There must be at least one table listed in the FROM clause.
+
+WHERE conditions
+Optional. The conditions that must be met for the records to be selected.
+
+GROUP BY expressions
+Optional. It collects data across multiple records and groups the results by one or more columns.
+
+HAVING condtion
+Optional. It is used in combination with the GROUP BY to restrict 
+the groups of returned rows to only those whose the condition is TRUE.
+
+ORDER BY expression
+Optional. It is used to sort the records in your result set.
+
+LIMIT
+Optional. If LIMIT is provided, it controls the maximum number of records to retrieve. 
+At most, the number of records specified by number_rows will be returned in the result set. 
+The first row returned by LIMIT will be determined by offset_value.
+
+FETCH
+Optional. If FETCH is provided, 
+it controls the maximum number of records to retrieve. At most, 
+the number of records specified by fetch_rows will be returned in the result set. 
+The first row returned by FETCH will be determined by offset_value.
+
+FOR UPDATE
+Optional. Records affected by the query are write-locked until the transaction has completed
+
+FOR SHARE
+Optional. Records affected by the query can be used by other transactions but can not be updated 
+or deleted by those other transactions
+************************************************************************************************************
+
+Example - Select all fields from one table
+Let's look at how to use a PostgreSQL SELECT query to select all fields from a table.
+
+SELECT *
+FROM categories
+WHERE category_id >= 2500
+ORDER BY category_id ASC;
+In this PostgreSQL SELECT statement example, we've used * to signify that we wish to select all fields from the categories table where the category_id is greater than or equal to 2500. The result set is sorted by category_id in ascending order.
+************************************************************************************************************
+
+Example - Select individual fields from one table
+You can also use the PostgreSQL SELECT statement to select individual fields from the table, as opposed to all fields from the table.
+
+For example:
+
+SELECT category_id, category_name, comments
+FROM categories
+WHERE category_name = 'Hardware'
+ORDER BY category_name ASC, comments DESC;
+This PostgreSQL SELECT example would return only the category_id, category_name, 
+and comments fields from the categories table where the category_name is 'Hardware'. 
+The results are sorted by category_name in ascending order and then comments in descending order.
+************************************************************************************************************
+
+Example - Select fields from multiple tables
+You can also use the PostgreSQL SELECT statement to retrieve fields from multiple tables.
+
+SELECT products.product_name, categories.category_name
+FROM categories
+INNER JOIN products
+ON categories.category_id = products.category_id
+ORDER BY product_name;
+This PostgreSQL SELECT example joins two tables together to gives us a result set 
+that displays the product_name and category_name fields where the category_id value matches in 
+both the categories and products table. The results are sorted by product_name in ascending order.
+************************************************************************************************************
