@@ -192,3 +192,5 @@ ORDER BY categories.category_name;
 This PostgreSQL FROM clause example uses the FROM clause to list two tables - categories and products. 
 And we are using the FROM clause to specify a LEFT OUTER JOIN between the categories and products tables based on 
 the category_id columns in both tables.
+************************************************************************************************************
+************************************************************************************************************
