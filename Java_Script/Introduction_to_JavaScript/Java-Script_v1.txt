@@ -1,0 +1,6 @@
+Introdution to Java Script
+
+   1.Different between JS and other classical Languages
+   2.unique Concepts
+   
+

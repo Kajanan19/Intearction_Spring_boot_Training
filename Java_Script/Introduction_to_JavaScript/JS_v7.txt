@@ -1,0 +1,37 @@
+JavaScript
+
+JS was designed in 1995 by Brendan Eich for Netscape. 
+In 1996, Netscape submitted JS to ECMA International to be standardized, 
+which lead to a new version of the language called ECMAScript.
+
+ECMAScript 2
+
+The first standardized version of ECMAScript was released in 1997. 
+ECMAScript 2 followed a year later, bringing minor changes to modernize the language with ISO standards.
+
+ECMAScript 3
+
+ECMAScript 3 was released in 1999 and ushered in many new popular features, 
+including expression, try/catch exception handling, and more. After ECMAScript 3, 
+no changes were made to the official standard for many years.
+
+ECMAScript 4
+
+ECMAScript 4 was proposed as a significant upgrade in the mid-2000s. 
+There was some controversy over these updates, and ES4 was scrapped.
+
+ECMAScript 5
+
+ECMAScript 5 (ES5) came along in 2009 with subtle changes to ES3 so that JavaScript could be supported in all browsers. 
+The desire for a more robust update began around 2012 when there was a stronger push to abandon support for 
+Internet Explorer.
+
+ECMAScript 6
+
+The next big update occurred in 2015 when ECMAScript 6 (ES6) or ECMAScript 2015 (ES2015) was officially released. 
+ES6 features modernized JavaScript.
+
+And beyond
+
+There have been four more updates since that time: ECMAScript 2016, 2017, 2018, and 2019. 
+The name ES.Next is given to the upcoming version, which is still in revision and proposal

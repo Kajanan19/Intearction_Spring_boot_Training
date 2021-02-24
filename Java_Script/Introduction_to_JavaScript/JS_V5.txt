@@ -1,0 +1,15 @@
+Why java Script?
+
+1.Client Side Development
+       a.Native Development
+       b.Jquery Development
+       c.Angular JS, React, Ember
+
+2.Sever Side Development
+       a.Node JS
+       b.Express
+
+3.Browser extensions
+4.Desktop Applications
+5.Mobile Applications
+6.IOT Applications

@@ -1,0 +1,9 @@
+var value =42
+
+var-: Create new value.
+      No predeclaration type
+
+      or
+
+      var value;
+      value=42;

@@ -1,0 +1,4 @@
+1.No need to declare variable type.
+2.The same variables can be assinged values of different types.
+3.No Scoping information in variable declaration.
+4.variables and variable can be interrogated.

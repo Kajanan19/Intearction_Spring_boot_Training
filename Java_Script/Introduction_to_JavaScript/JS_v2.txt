@@ -1,0 +1,4 @@
+1.What is Java Script
+2.Why we have to learn
+3.History of JS
+4.Heads up on some problems

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head> 
+        <title></title> 
+        <!-- Script tag can also be placed here -->
+      </head> 
+      <body> 
+        
+        <p>Before the script...</p> 
+        <!-- Script tag inside the body -->
+        <script> 
+          // write the javascript code inside it 
+          //123 + "4"--------------->concatenation with string values
+          var a=123;//-------------------->Converted to string by interpreter
+          var b="4";
+
+          console.log(a+b);
+          
+          //= always taken for assignment
+          //== operator----------->if two values with different types ==will convert data to same type and check.
+
+          var c=123;
+          
+          if(a == c){
+              console.log("Values are equal");
+          }
+
+          var d="123";
+
+          if(a == d ){
+              console.log("Values are equal");
+          }
+
+          if(a === d){//--------------------> === use to compare types
+            console.log("Values are equal");
+          }
+
+
+        </script> 
+        
+        <p>...After the script.</p> 
+        
+      </body> 
+</html>
