@@ -1,16 +1,9 @@
 /****************************************************************************
- * Fibonacci Search JavaScript Implementation
- * Author   Alhassan Atama Isiaka
- * Version v1.0.0
- * Copyright 2020
- * https://github.com/komputarist
  *
  * This implementation is based on Generalizing the Fibonacci search we
  * define the Fibonacci search of degree K. Like the Fibonacci search,
  * which it reduces to for K = 2, the Fibonacci search of degree K
  * involves only addition and subtraction.
- *  Capocelli R.M. (1991) A Generalization of the Fibonacci Search. In:
- * Bergum G.E., Philippou A.N., Horadam A.F. (eds) Applications of Fibonacci
  * Numbers. Springer, Dordrecht. https://doi.org/10.1007/978-94-011-3586-3_9
  *
  * This snippet is free. Feel free to improve on it
